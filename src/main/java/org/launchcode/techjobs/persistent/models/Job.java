@@ -12,15 +12,19 @@ public class Job extends AbstractEntity {
     @ManyToOne
     private Employer employer;
 
+    public void setSkills(List<Skill> skills) {
+        this.skills = skills;
+    }
+
     @ManyToMany
-    private final List<Skill> skills = new ArrayList<>();
+    private List<Skill> skills = new ArrayList<>();
 
 
     public Job() {
     }
 
     // Initialize the id and value fields.
-    public Job(Employer anEmployer, Skill someSkills) {
+    public Job(Employer anEmployer, List<Skill> someSkills) {
         super();
         this.employer = anEmployer;
         this.skills = someSkills;
