@@ -74,8 +74,15 @@ public class HomeController {
 
     @GetMapping("view/{jobId}")
     public String displayViewJob(Model model, @PathVariable int jobId) {
-
+        Optional<Job> selectedJob = jobRepository.findById(jobId);
+        if (selectedJob.isPresent()) {
+            model.addAttribute("job", selectedJob.get());
             return "view";
+        } else {
+            model.addAttribute("title", "Job does not exist.");
+            return "view";
+        }
+
     }
 
 }
